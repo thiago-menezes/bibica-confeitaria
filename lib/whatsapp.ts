@@ -27,29 +27,41 @@ export function generateWhatsAppMessage(
     .map((item) => {
       const variant = item.variant ? ` ${item.variant}` : ""
       const subtotal = formatCurrency(item.unitPrice * item.qty)
-      return `• ${item.name}${variant} — ${item.qty} un — ${subtotal}`
+      return `${item.name}${variant}: ${item.qty} un — ${subtotal}`
     })
-    .join("\n")
+    .join("\n\n")
 
   const discountText = discount > 0 ? "10% aplicado" : "—"
-  const deliveryText = orderData.deliveryType === "delivery" ? "Entrega" : "Retirada"
+  const deliveryText = orderData.deliveryType === "delivery" ? "Sim" : "Retirada no local"
   const addressText =
     orderData.deliveryType === "delivery" ? `${orderData.address}, ${orderData.neighborhood}, ${orderData.city}` : "—"
 
   return `Novo pedido – Bibica
-Cliente: ${orderData.name}
-WhatsApp: ${orderData.phone}
-${orderData.email ? `E-mail: ${orderData.email}` : ""}
 
-Itens:
+------------------------------
+Informações do Cliente:
+------------------------------
+Nome: ${orderData.name}
+WhatsApp: ${orderData.phone}
+${orderData.email ? `
+E-mail: ${orderData.email}` : ""}
+
+------------------------------
+Detalhes do Pedido:
+------------------------------
 ${itemsList}
 
+------------------------------
+Resumo da Compra:
+------------------------------
 Desconto: ${discountText}
-${deliveryText}: ${deliveryText}
+Entrega: ${deliveryText}
 Endereço: ${addressText}
 Data/Janela: ${orderData.date}${orderData.timeWindow ? ` — ${orderData.timeWindow}` : ""}
 Pagamento: ${orderData.paymentMethod}
 Observações: ${orderData.observations || "—"}
+
+------------------------------
 
 Total: ${formatCurrency(total)}`
 }
