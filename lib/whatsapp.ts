@@ -1,7 +1,7 @@
 import type { CartItem } from "./data"
 import { formatCurrency } from "./cart"
 
-const PHONE = "5511999999999" // Replace with actual WhatsApp number
+const PHONE = "5567998201822" 
 
 export interface OrderData {
   name: string

@@ -17,7 +17,7 @@ export function Events() {
               <blockquote className="text-lg italic text-muted-foreground">
                 "Doce perfeito: bonito, equilibrado e pontual. Virou tradição aqui em casa!"
               </blockquote>
-              <cite className="text-sm font-medium mt-4 block">— Cliente feliz</cite>
+              <cite className="text-sm font-medium mt-4 block">— Alexandre Vilagram</cite>
             </CardContent>
           </Card>
         </div>

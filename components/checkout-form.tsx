@@ -40,8 +40,6 @@ export function CheckoutForm({ onOrderSubmit }: CheckoutFormProps) {
 
     if (!formData.phone?.trim()) {
       newErrors.phone = "WhatsApp é obrigatório"
-    } else if (!/^$$\d{2}$$\s\d{4,5}-\d{4}$/.test(formData.phone)) {
-      newErrors.phone = "Formato inválido. Use (xx) xxxxx-xxxx"
     }
 
     if (!formData.deliveryType) {
@@ -141,7 +139,7 @@ export function CheckoutForm({ onOrderSubmit }: CheckoutFormProps) {
       toast({
         title: "Erro ao enviar",
         description:
-          "Não foi possível abrir o WhatsApp. Tente novamente ou entre em contato pelo número (11) 99999-9999.",
+          "Não foi possível abrir o WhatsApp. Tente novamente ou entre em contato pelo número (67) 99820-1822.",
         variant: "destructive",
       })
     } finally {

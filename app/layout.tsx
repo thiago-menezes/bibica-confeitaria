@@ -37,7 +37,9 @@ export default function RootLayout({
   return (
     <html lang="pt-BR">
       <body className={`font-sans ${inter.variable} ${playfair.variable} antialiased`}>
-        <Suspense fallback={null}>{children}</Suspense>
+        <div className="w-full max-w-screen-2xl mx-auto">
+          <Suspense fallback={null}>{children}</Suspense>
+        </div>
         <Analytics />
       </body>
     </html>

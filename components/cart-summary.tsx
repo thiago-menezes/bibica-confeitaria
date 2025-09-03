@@ -73,7 +73,7 @@ export function CartSummary({ onCartUpdate }: CartSummaryProps) {
     <Card>
       <CardHeader>
         <CardTitle className="flex items-center justify-between">
-          Resumo do Pedido
+          Resumo do Pedido <br/>
           <div className="flex space-x-2">
             <Button variant="outline" size="sm" asChild>
               <Link href="/cardapio">

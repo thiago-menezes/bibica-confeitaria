@@ -18,7 +18,7 @@ export function CategoryTabs({ activeCategory, onCategoryChange }: CategoryTabsP
   }
 
   return (
-    <div className="sticky top-16 z-40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 border-b">
+    <div className="z-40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 border-b">
       <div className="container px-4 py-4">
         <div className="flex justify-center">
           <div className="flex space-x-1 sm:space-x-2 overflow-x-auto scrollbar-hide">

@@ -5,7 +5,7 @@ export function Contact() {
   return (
     <section id="contato" className="py-16 md:py-24 bg-pink-50">
       <div className="container px-4">
-        <div className="max-w-4xl mx-auto text-center space-y-12">
+        <div className="max-w-6xl mx-auto text-center space-y-12">
           <div className="space-y-4">
             <h2 className="text-3xl md:text-4xl font-serif font-bold">Contato</h2>
             <p className="text-lg text-muted-foreground">Entre em contato conosco para fazer seu pedido</p>
@@ -17,7 +17,7 @@ export function Contact() {
                 <Phone className="h-8 w-8 mx-auto text-pink-500" />
                 <div>
                   <h3 className="font-semibold">WhatsApp</h3>
-                  <p className="text-sm text-muted-foreground">(11) 99999-9999</p>
+                  <p className="text-sm text-muted-foreground">(67) 99820-1822</p>
                 </div>
               </CardContent>
             </Card>
