@@ -204,8 +204,33 @@ html {
 }
 
 /* Enhanced mobile cart bar */
+.cart-bar-mobile {
+  /* Garante que sempre aparece em mobile */
+  min-height: 60px;
+  /* Safe area para iPhones com notch */
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+}
+
+/* Força exibição em mobile */
 @media (max-width: 768px) {
   .cart-bar-mobile {
-    padding-bottom: env(safe-area-inset-bottom);
+    display: block !important;
+    position: fixed !important;
+    bottom: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    z-index: 9999 !important;
+    background: rgba(255, 255, 255, 0.95) !important;
+    backdrop-filter: blur(8px) !important;
+    -webkit-backdrop-filter: blur(8px) !important;
+    border-top: 1px solid rgba(0, 0, 0, 0.1) !important;
+    box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1) !important;
+  }
+}
+
+/* Suporte específico para iOS Safari */
+@supports (-webkit-touch-callout: none) {
+  .cart-bar-mobile {
+    padding-bottom: max(env(safe-area-inset-bottom), 8px);
   }
 }

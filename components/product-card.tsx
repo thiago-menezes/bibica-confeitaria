@@ -2,13 +2,14 @@
 
 import { useState } from "react"
 import Image from "next/image"
+import { ImageWithFallback } from "./image-with-fallback"
 import { Minus, Plus } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { useToast } from "@/hooks/use-toast"
-import type { Product } from "@/lib/data"
+import type { Product } from "@/lib/sheets"
 import { addToCart, formatCurrency } from "@/lib/cart"
 
 interface ProductCardProps {
@@ -66,7 +67,13 @@ export function ProductCard({ product }: ProductCardProps) {
   return (
     <Card className="overflow-hidden hover:shadow-lg transition-shadow">
       <div className="aspect-square relative">
-        <Image src={product.imageUrl || "/placeholder.svg"} alt={product.name} fill className="object-cover" />
+        <ImageWithFallback
+          src={product.imageUrl}
+          alt={product.name}
+          fill
+          className="object-cover"
+          fallbackSrc="/placeholder.svg"
+        />
       </div>
       <CardContent className="p-6 space-y-4">
         <div className="space-y-2">
@@ -103,7 +110,7 @@ export function ProductCard({ product }: ProductCardProps) {
               <Minus className="h-4 w-4" />
             </Button>
             <Input
-              type="number"
+              type="tel"
               min="1"
               value={quantity}
               onChange={(e) => handleQuantityChange(e.target.value)}

@@ -41,8 +41,8 @@ export function CartBar() {
   const finalTotal = subtotal - discount
 
   return (
-    <div className="fixed bottom-0 left-0 right-0 z-50 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/80 border-t shadow-lg cart-bar-mobile">
-      <div className="container px-4 py-3">
+    <div className="fixed bottom-0 left-0 right-0 bg-white/95 backdrop-blur-sm border-t border-gray-200 shadow-lg cart-bar-mobile">
+      <div className="container mx-auto px-4 py-3">
         <div className="flex items-center justify-between gap-4">
           <div className="flex items-center space-x-3 min-w-0">
             <div className="flex items-center space-x-2">

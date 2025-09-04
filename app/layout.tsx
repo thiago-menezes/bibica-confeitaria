@@ -22,6 +22,13 @@ export const metadata: Metadata = {
   description:
     "Confeitaria familiar com doces gourmet feitos à mão: trufas, pudins e geladinhos com ingredientes selecionados. Encomendas para presentes e eventos.",
   generator: "v0.app",
+  viewport: {
+    width: "device-width",
+    initialScale: 1,
+    maximumScale: 1,
+    userScalable: false,
+    viewportFit: "cover",
+  },
   openGraph: {
     title: "Bibica – Cozinha Gourmet",
     description: "Doces artesanais com qualidade ímpar. Feitos um a um, com carinho de família.",
@@ -36,6 +43,13 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="pt-BR">
+      <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover" />
+        <meta name="format-detection" content="telephone=no" />
+        <meta name="mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+      </head>
       <body className={`font-sans ${inter.variable} ${playfair.variable} antialiased`}>
         <div className="w-full max-w-screen-2xl mx-auto">
           <Suspense fallback={null}>{children}</Suspense>

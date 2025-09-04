@@ -1,14 +1,22 @@
 "use client"
 
 import { Button } from "@/components/ui/button"
-import { categories } from "@/lib/data"
+import useSWR from "swr"
+import type { Category } from "@/lib/sheets"
 
 interface CategoryTabsProps {
   activeCategory: string
   onCategoryChange: (categoryId: string) => void
 }
 
+const fetcher = (url: string) => fetch(url).then((res) => res.json())
+
 export function CategoryTabs({ activeCategory, onCategoryChange }: CategoryTabsProps) {
+  const { data: categories = [] } = useSWR<Category[]>('/api/categories', fetcher)
+  
+  if (categories.length === 0) {
+    return null // Não renderiza nada se não tem categorias
+  }
   const scrollToCategory = (categoryId: string) => {
     onCategoryChange(categoryId)
     const element = document.getElementById(categoryId)

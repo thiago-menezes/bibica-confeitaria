@@ -1,6 +1,7 @@
 "use client"
 
 import { useState, useEffect } from "react"
+import useSWR from "swr"
 import { Header } from "@/components/header"
 import { Footer } from "@/components/footer"
 import { CategoryTabs } from "@/components/category-tabs"
@@ -8,10 +9,17 @@ import { ProductCard } from "@/components/product-card"
 import { CartBar } from "@/components/cart-bar"
 import { DiscountBanner } from "@/components/discount-banner"
 import { Toaster } from "@/components/ui/toaster"
-import { categories, products } from "@/lib/data"
+import { LoadingSpinner } from "@/components/loading-spinner"
+import type { Product, Category } from "@/lib/sheets"
+
+const fetcher = (url: string) => fetch(url).then((res) => res.json())
 
 export default function CardapioPage() {
   const [activeCategory, setActiveCategory] = useState("trufas")
+  
+  // Fetch data from APIs
+  const { data: products = [], error: productsError, isLoading: productsLoading } = useSWR<Product[]>('/api/products', fetcher)
+  const { data: categories = [], error: categoriesError, isLoading: categoriesLoading } = useSWR<Category[]>('/api/categories', fetcher)
 
   // Trigger cart update events when localStorage changes
   useEffect(() => {
@@ -23,6 +31,57 @@ export default function CardapioPage() {
       }
     }
   }, [])
+
+  // Update active category when categories load
+  useEffect(() => {
+    if (categories.length > 0 && !categories.find(c => c.id === activeCategory)) {
+      setActiveCategory(categories[0].id)
+    }
+  }, [categories, activeCategory])
+
+  // Loading state
+  if (productsLoading || categoriesLoading) {
+    return (
+      <div className="min-h-screen pb-24 sm:pb-20">
+        <Header />
+        <main className="container px-4 py-6 sm:py-8">
+          <div className="max-w-6xl mx-auto text-center py-12">
+            <LoadingSpinner />
+            <p className="mt-4 text-muted-foreground">Carregando cardápio...</p>
+          </div>
+        </main>
+        <Footer />
+        <CartBar />
+        <Toaster />
+      </div>
+    )
+  }
+
+  // Error state
+  if (productsError || categoriesError) {
+    return (
+      <div className="min-h-screen pb-24 sm:pb-20">
+        <Header />
+        <main className="container px-4 py-6 sm:py-8">
+          <div className="max-w-6xl mx-auto text-center py-12">
+            <h1 className="text-2xl font-bold text-red-600 mb-4">Erro ao carregar cardápio</h1>
+            <p className="text-muted-foreground mb-4">
+              Não foi possível carregar os dados do cardápio. Tente novamente.
+            </p>
+            <button 
+              onClick={() => window.location.reload()} 
+              className="bg-pink-500 hover:bg-pink-600 text-white px-4 py-2 rounded"
+            >
+              Recarregar página
+            </button>
+          </div>
+        </main>
+        <Footer />
+        <CartBar />
+        <Toaster />
+      </div>
+    )
+  }
 
   return (
     <div className="min-h-screen pb-24 sm:pb-20">
